@@ -7,9 +7,12 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                        retry(3) {
+
+		sh 'echo "1" > count'
+
+                retry(3) {
                     sh './sample.py'
-                    }
+                }
 
                 sh '''
                    echo "multi line shell step"
