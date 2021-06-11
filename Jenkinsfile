@@ -19,7 +19,7 @@ pipeline {
                    date
                 '''
 
-                        timeout(time: 2, unit: 'SECONDS') {
+                        timeout(time: 5, unit: 'SECONDS') {
                             sh './sleep_script.py'
                 }
             }
