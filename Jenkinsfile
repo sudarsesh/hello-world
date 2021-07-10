@@ -1,7 +1,17 @@
-node {
-    // Load the file 'externalMethod.groovy' from the current directory, into a variable called "externalMethod".
-    def externalMethod = load("externalMethod.groovy")
+pipeline {
+    agent {
+        dockerfile {
+            dir 'Dockerfiles'
+            file 'Dockerfile.maven'
+            label 'agent1'
+        }
+    }
 
-    // Call the method we defined in externalMethod.
-    externalMethod.lookAtThis("Steve")
+    stages {
+        stage('GIT SCM') {
+            steps {
+                sh 'mvn -version'
+            }
+        }
+    }
 }
